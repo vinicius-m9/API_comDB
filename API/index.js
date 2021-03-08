@@ -1,9 +1,14 @@
-require('dotenv').config()
+import express from 'express'
+import Database from './database/index'
 
-const express = require('express')
+// Conexão com MongoDB
+Database.connection()
+
+// Configuração do express
 const server = express()
-// Configuração do express para receber JSON
 server.use(express.json())
+
+require('dotenv').config()
 
 const PORT = process.env.PORT || 3000
 
