@@ -6,14 +6,14 @@ const userSchema = new mongoose.Schema({
   password: String,
   createdAt: {
     type: Date,
-    default: new Date()
+    default: new Date().toString()
   },
   updatedAt: {
     type: Date,
-    default: new Date()
+    default: new Date().toString()
   }
 })
 
-export const User = mongoose.model('user', userSchema)
+export const User = mongoose.model('User', userSchema)
 
 export default User
