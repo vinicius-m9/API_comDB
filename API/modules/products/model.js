@@ -1,19 +1,23 @@
 import mongoose from 'mongoose'
 
-const userSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  email: {
+  description: {
     type: String,
     required: true
   },
-  password: {
+  price: {
     type: String,
     required: true
   },
-  createdAt: {
+  inventory: {
+    type: Number,
+    default: 0
+  },
+  uploadedAt: {
     type: Date,
     default: new Date().toString()
   },
@@ -23,6 +27,6 @@ const userSchema = new mongoose.Schema({
   }
 })
 
-export const User = mongoose.model('User', userSchema)
+export const Product = new mongoose.model('Product', productSchema)
 
-export default User
+export default Product

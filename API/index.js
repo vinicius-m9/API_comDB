@@ -1,6 +1,7 @@
 import express from 'express'
 import DatabaseConnection from './database/index'
-import { routeRegister } from './modules/users/controller'
+import { UserRouteRegister } from './modules/users/controller'
+import { ProductRouteRegister } from './modules/products/controller'
 
 require('dotenv').config()
 
@@ -11,8 +12,11 @@ DatabaseConnection()
 const server = express()
 server.use(express.json())
 
-// Definicao das rotas
-routeRegister(server)
+// Definicao das rotas dos usuarios
+UserRouteRegister(server)
+
+// Definicao das rotas dos produtos
+ProductRouteRegister(server)
 
 const PORT = process.env.PORT || 3000
 

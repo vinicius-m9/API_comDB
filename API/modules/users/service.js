@@ -4,7 +4,7 @@ export const getAllUsers = () => UserModel.find({})
 
 export const getUserById = id => UserModel.findById(id)
 
-export const getUserByEmail = email => UserModel.findOne({ email })
+export const getUserByEmail = email => UserModel.findOne({ email: email })
 
 export const createUser = user => UserModel.create(user)
 

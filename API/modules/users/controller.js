@@ -1,5 +1,7 @@
 import UserService from './service'
 
+const BASE_ROUTE = '/users'
+
 // Busca todos os usuários
 const getAllUsers = async (req, res) => {
   res.json(await UserService.getAllUsers())
@@ -40,6 +42,8 @@ const updateUser = async (req, res) => {
   if (!user) return res.status(404).send('Usuario nao encontrado')
 
   user.updatedAt = new Date().toString()
+  await user.save()
+
   await UserService.updateUser(id, userAlteration)
   res.send('Usuario alterado com sucesso!')
 }
@@ -55,16 +59,16 @@ const deleteUser = async (req, res) => {
   res.send('Usuario deletado com sucesso!')
 }
 
-export const routeRegister = (server) => {
-  server.get('/users', getAllUsers)
+export const UserRouteRegister = (server) => {
+  server.get(`${BASE_ROUTE}`, getAllUsers)
 
-  server.get('/users/:id', getUserById)
+  server.get(`${BASE_ROUTE}/:id`, getUserById)
 
-  server.post('/users', createUser)
+  server.post(`${BASE_ROUTE}`, createUser)
 
-  server.put('/users/:id', updateUser)
+  server.put(`${BASE_ROUTE}/:id`, updateUser)
 
-  server.delete('/users/:id', deleteUser)
+  server.delete(`${BASE_ROUTE}/:id`, deleteUser)
 }
 
-export default routeRegister
+export default UserRouteRegister
